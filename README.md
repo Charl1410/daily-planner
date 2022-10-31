@@ -23,4 +23,4 @@
     ```
 
 ## Screenshots 
-[Work Day Scheduler.webm](https://user-images.githubusercontent.com/112945634/199001059-3df0d8cf-8644-486c-91ab-f318ee1cc53a.webm)
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/112945634/199002510-513428b4-3b22-4b51-a8c4-90ca934e9743.gif)
