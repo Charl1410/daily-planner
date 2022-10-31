@@ -1,7 +1,9 @@
 # daily-planner
 
 ## Overview 
+```
     This daily planner is designed to update and display the current date and time. Users can input task into speicifc hour slots and click the save button to commit the task to local storage. When the page is refreshed or closed and reopened the task will remain in place. The color of each time slot should update to represent the past, present and future hour(s).
+```
 
 ## Acceptance criteria 
     ```md

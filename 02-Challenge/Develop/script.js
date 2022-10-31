@@ -14,10 +14,10 @@ function savePlan(e) {
 }
 
 //check time to update the css color by changing the class based on past present future 
-
 function updateColor() {
   var currentHour = moment().hour();
 
+  
   $(".time-block").each(function (index, row) {
     var hour = $(row).attr("data-hour");
 
@@ -34,11 +34,11 @@ function updateColor() {
 //TODOfunction to generate the time slots
 function createTimeSlots() {
 
-  //create for loop to go through and create all elements for the UI
+  //create for loop to go through and creates all elements for the UI
 
   for (var hour = times.startHour; hour <= times.endHour; hour++) {
     var storedItem = localStorage.getItem(hour);
-    var timeSlot = $("<div>").addClass("row time-block"); //main inner container
+    var timeSlot = $("<div>").addClass("row time-block"); 
     timeSlot.attr("data-hour", hour);
     var timeHour = $("<div>")
       .addClass("col-sm-2 hour")
@@ -53,12 +53,14 @@ function createTimeSlots() {
     buttonContainer.on("click", savePlan);
     var button = $("<button>").addClass("fas fa-save");
 
+    //appends elements into each other
     outerBox.append(enterText);
     buttonContainer.append(button);
     timeSlot.append(timeHour);
     timeSlot.append(outerBox);
     timeSlot.append(buttonContainer);
 
+    //appends to HTML into container class 
     $(".container").append(timeSlot);
   }
 }
