@@ -23,4 +23,5 @@
     ```
 
 ## Screenshots 
-![ezgif com-gif-maker](https://user-images.githubusercontent.com/112945634/199002510-513428b4-3b22-4b51-a8c4-90ca934e9743.gif)
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/112945634/199002973-a3dee55e-d4be-4fda-bb6f-79291dc514de.gif)
+
