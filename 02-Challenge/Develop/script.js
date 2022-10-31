@@ -1,15 +1,15 @@
 var times = {
   startHour: 9,
-  endHour: 17,
+  endHour: 22,
 };
 
 //TODO function to save the information entered to local storage
 function savePlan(e) {
   
-  var textEntry = $(e.target).find('.description').val(); //this isnt working 
+  var textEntry = $(e.target).parent().find('.description').val(); //this isnt working 
   var hour = $(e.target).parent().attr('data-hour');
    
-  localStorage.setItem(hour, textEntry);
+  localStorage.setItem(hour, textEntry); 
   
    console.log(textEntry)
 
@@ -21,29 +21,29 @@ function savePlan(e) {
 
 function updateColor() {
 
-var currentHour = moment().hour();
+  var currentHour = moment().hour(); 
 
-//console.log(currentHour);
+  //console.log(currentHour);
 
 
-$(".row").each(function () {
-  var hour = $(this).attr("data-hour");
+  $(".time-block").each(function (index, row) {
+    var hour = $(row).attr("data-hour");
 
-  //console.log(hour) //something going wrong here - number + undefined 
+    //console.log(hour) //something going wrong here - number + undefined 
 
-  if (hour < currentHour) {
-    //add class ".past"
-    $(this).find(".description").addClass("past");
-    //if its equal to the current hour
-  } else if (hour == currentHour) {
-    //add class ".present"
-    $(this).find(".description").addClass("present");
-    //if its over the current hour
-  } else {
-    //add class ".future"
-    $(this).find(".description").addClass("future");
-  }
-});
+    if (hour < currentHour) {
+      //add class ".past"
+      $(row).find(".description").addClass("past");
+      //if its equal to the current hour
+    } else if (hour == currentHour) {
+      //add class ".present"
+      $(row).find(".description").addClass("present");
+      //if its over the current hour
+    } else {
+      //add class ".future"
+      $(row).find(".description").addClass("future");
+    }
+  });
 
 }
 
@@ -53,12 +53,14 @@ function createTimeSlots() {
   // 1. load the saved data from local storage
 
   //create for loop to go through and create all elements for the UI
-  for (hour = times.startHour; hour <= times.endHour; hour++) {
-    var timeSlot = $("<div>").addClass("row"); //main inner container
+
+  for (var hour = times.startHour; hour <= times.endHour; hour++) {
+    var storedItem = localStorage.getItem(hour)
+    var timeSlot = $("<div>").addClass("row time-block"); //main inner container
     timeSlot.attr("data-hour", hour);
     var timeHour = $("<div>").addClass("col-sm-2 hour").text(moment(hour, "h").format("h A"));
-    var outerBox = $("<div>").addClass("col-sm-8 row past");
-    var enterText = $("<textarea>").addClass("col-md-10 description");
+    var outerBox = $("<div>").addClass("col-sm-8 row");
+    var enterText = $("<textarea>").addClass("col-sm-12 description").val(storedItem);
     var buttonContainer = $("<div>").addClass(
       "col-sm-2 btn btn-primary saveBtn d-flex align-items-center justify-content-center"
     );
@@ -68,10 +70,13 @@ function createTimeSlots() {
     outerBox.append(enterText);
     buttonContainer.append(button);
     timeSlot.append(timeHour);
+    timeSlot.append(outerBox); 
     timeSlot.append(buttonContainer);
-    timeSlot.append(outerBox);
 
     $(".container").append(timeSlot);
+
+
+
   }
 
   //add event handler to the save button so it saves task to local storage
